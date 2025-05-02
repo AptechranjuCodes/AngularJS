@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJS Load Local JSON</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 50%;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body ng-app="myApp" ng-controller="myController">
+
+    <h1>AngularJS Load Local JSON Data</h1>
+    <button ng-click="fetchUsers()">Load Users</button>
+    
+    <table ng-show="users.length > 0">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Email</th>
+        </tr>
+        <tr ng-repeat="user in users">
+            <td>{{ user.ID }}</td>
+            <td>{{ user.Name }}</td>
+            <td>{{ user.Username }}</td>
+            <td>{{ user.Email }}</td>
+        </tr>
+    </table>
+
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("myController", function ($scope, $http) {
+            $scope.users = [];
+            $scope.fetchUsers = function () {
+            $http.get("data.json") // Fetch data from local JSON file
+        .then(function (response) {
+            $scope.users = response.data.users; // Access "users" array inside JSON
+        })
+        .catch(function (error) {
+            console.error("Error loading JSON data:", error);
+        });
+    };
+        });
+    </script>
+
+</body>
+</html>

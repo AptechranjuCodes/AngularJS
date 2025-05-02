@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo for an ng-repeat app</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+    <div ng-app="" ng-init="countries=['Brazil','Russia','India','China']">
+        <ul>
+            <li ng-repeat="country in countries">
+                {{ country }}
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

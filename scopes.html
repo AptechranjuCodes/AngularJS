@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nested Scope Demo</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script>
+    var app = angular.module("myApp", []);
+
+    // First Controller for Scope Demo
+    app.controller("firstControllerScope", function($scope) {
+      $scope.firstName = "John";
+    });
+
+    app.controller("secondControllerScope", function($scope) {
+      $scope.lastName = "Doe";
+
+      $scope.getFullName = function() {
+        return $scope.firstName + " " + $scope.lastName;
+      };
+    });
+
+    app.controller("thirdControllerScope", function($scope) {
+      $scope.middleName = "Michael";
+    });
+
+    // First Controller for Object Demo
+    app.controller("firstControllerObj", function($scope) {
+      $scope.firstModelObj = { firstName: "Alice" };
+    });
+
+    app.controller("secondControllerObj", function($scope) {
+      $scope.secondModelObj = { lastName: "Smith" };
+
+      $scope.getFullName = function() {
+        return ($scope.firstModelObj.firstName || "") + " " + ($scope.secondModelObj.lastName || "");
+      };
+    });
+  </script>
+</head>
+<body ng-app="myApp">
+
+  <!-- Nested Controllers Using Variables Directly on Scope -->
+  <div>
+    <h2>Nested controllers with model variables defined directly on the scopes</h2>
+    <p>(Typing on an input field overrides the same variable of a parent scope)</p>
+  </div>
+
+  <div ng-controller="firstControllerScope">
+    <h3>First Controller</h3>
+    <strong>First name:</strong> {{firstName}}<br/><br/>
+
+    <label>Set the first name: <input type="text" ng-model="firstName"/></label><br/><br/>
+
+    <div ng-controller="secondControllerScope">
+      <h3>Second Controller (inside First)</h3>
+      <strong>First name (from First):</strong> {{firstName}}<br/>
+      <strong>Last name (new variable):</strong> {{lastName}}<br/>
+      <strong>Full name:</strong> {{getFullName()}}<br/><br/>
+
+      <label>Set the first name: <input type="text" ng-model="firstName"/></label><br/>
+      <label>Set the last name: <input type="text" ng-model="lastName"/></label><br/><br/>
+
+      <div ng-controller="thirdControllerScope">
+        <h3>Third Controller (inside Second and First)</h3>
+        <strong>First name (from First):</strong> {{firstName}}<br/>
+        <strong>Middle name (new variable):</strong> {{middleName}}<br/><br/>
+
+        <label>Set the first name: <input type="text" ng-model="firstName"/></label><br/>
+        <label>Set the middle name: <input type="text" ng-model="middleName"/></label><br/>
+        <label>Set the last name: <input type="text" ng-model="lastName"/></label><br/>
+      </div>
+    </div>
+  </div>
+
+  <hr/>
+
+  <!-- Nested Controllers Using Model Objects -->
+  <h2>Nested controllers with model variables defined inside objects</h2>
+  <p>(Typing on an input field updates a specific object without overriding parent variables)</p>
+
+  <div ng-controller="firstControllerObj">
+    <h3>First Controller</h3>
+    <strong>First name:</strong> {{firstModelObj.firstName}}<br/><br/>
+
+    <label>Set the first name: <input type="text" ng-model="firstModelObj.firstName"/></label><br/><br/>
+
+    <div ng-controller="secondControllerObj">
+      <h3>Second Controller (inside First)</h3>
+      <strong>First name (from First):</strong> {{firstModelObj.firstName}}<br/>
+      <strong>Last name (from Second):</strong> {{secondModelObj.lastName}}<br/>
+      <strong>Full name:</strong> {{getFullName()}}<br/><br/>
+
+      <label>Set the first name: <input type="text" ng-model="firstModelObj.firstName"/></label><br/>
+      <label>Set the last name: <input type="text" ng-model="secondModelObj.lastName"/></label><br/>
+    </div>
+  </div>
+
+</body>
+</html>

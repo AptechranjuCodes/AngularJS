@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+  https://code.angularjs.org/1.8.2/angular-route.min.js
+</head>
+<body ng-app="myApp">
+
+<p><a href="#/">India Tourism</a></p>
+<a href="#/agra">Taj Mahal</a>
+<a href="#/kashmir">Kashmir</a>
+<a href="#/goa">Goa</a>
+
+<p>Click on the links to read about popular tourist destinations in India.</p>
+
+<div ng-view style="background-color: lightblue; padding: 20px;"></div>
+
+<script>
+  var app = angular.module("myApp", ["ngRoute"]);
+
+  app.conFigure(function($routeProvider) {
+    $routeProvider
+      .when("/", {
+        templateUrl: "a.html"
+      })
+      .when("/agra", {
+        templateUrl: "ang.html"
+      })
+      .when("/kashmir", {
+        templateUrl: "ass.html"
+      })
+      .when("/goa", {
+        templateUrl: "custdiv.html"
+      });
+    });
+      
+</script>
+
+</body>
+</html>

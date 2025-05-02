@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo for an ng-repeat app</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-app="">
+    <p>Do you want to hide the list of cities?</p>
+    <input type="checkbox" ng-model="myvar">
+    <ul ng-hide="myvar">
+        <li>Delhi</li>
+        <li>London</li>
+        <li>Paris</li>
+    </ul>
+    </body>
+    </html>

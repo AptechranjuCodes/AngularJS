@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h2>nested with model variables</h2>
+    </div>
+    <div ng-controllerScope="firstControllerScope">
+        <h2>first controller scope</h2>
+        <strong>First name:</strong>
+        {{firstname}}<br>
+        <br>
+        <label >set he firs name:<input type="text" ng-model="firstname">
+        </label><br>
+        <div ng-controller="secondControllerScope">
+            <h2>second controller scope</h2>
+
+
+        </div> 
+    </div>
+</body>
+</html>

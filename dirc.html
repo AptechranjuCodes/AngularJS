@@ -1,0 +1,21 @@
+<html lang="en" ng-app="myApp"> 
+<head> 
+<meta charset="UTF-8"> 
+<title>Demo for a Simple AngularJS App</title> 
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head> 
+<body ng-controller="myController"> 
+<div> 
+<h3>Please enter your name here.</h3> 
+Name: <input type="text" ng-model="name" placeholder=" enter your name">
+<p>Hello <strong>{{name}}!</strong >  
+<p>Welcome to AngularJS.</p> 
+</div> 
+<script> 
+var app = angular.module("myApp",[]); 
+app.controller("myController" ,function($scope){
+$scope.name = ""; 
+}); 
+</script> 
+</body> 
+</html> 

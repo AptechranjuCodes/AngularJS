@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJS CRUD with Local JSON</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="crudjson.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        table { margin: 20px auto; border-collapse: collapse; width: 60%; }
+        th, td { padding: 10px; border: 1px solid #ddd; text-align: center; }
+        th { background-color: #007bff; color: white; }
+    </style>
+</head>
+<body ng-app="myApp" ng-controller="myController">
+
+    <h1>AngularJS CRUD with Local JSON</h1>
+
+    <button ng-click="fetchUsers()">Load Users</button>
+
+    <h3>Add New User</h3>
+    <input type="text" ng-model="newUser.Name" placeholder="Enter Name">
+    <input type="text" ng-model="newUser.Username" placeholder="Enter Username">
+    <input type="email" ng-model="newUser.Email" placeholder="Enter Email">
+    <button ng-click="addUser()">Add User</button>
+
+    <h3>User List</h3>
+    <table ng-show="users.length > 0">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+        <tr ng-repeat="user in users">
+            <td>{{ user.ID }}</td>
+            <td>{{ user.Name }}</td>
+            <td>{{ user.Username }}</td>
+            <td>{{ user.Email }}</td>
+            <td>
+                <button ng-click="updateUser(user)">Update</button>
+                <button ng-click="deleteUser(user)">Delete</button>
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Event Handling</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #box {
+            width: 200px;
+            height: 100px;
+            background-color: lightblue;
+            text-align: center;
+            line-height: 100px;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="btn">Click Me</button>
+    <div id="box">Hover Over Me</div>
+    <input type="text" placeholder="Type something" maxlength="10">
+
+    <script>
+        // Click event
+        $("#btn").click(function() {
+            alert("Button clicked!");
+        });
+
+        // Mouse enter event
+        $("#box").mouseenter(function() {
+            $(this).css("background-color", "yellow");
+        });
+
+        // Keypress event
+        $("input").keypress(function() {
+            console.log("Key pressed!");
+        });
+    </script>
+
+</body>
+</html>
+

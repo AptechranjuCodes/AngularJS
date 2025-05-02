@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REST API in AngularJS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 70%;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        input, button {
+            padding: 8px;
+            margin: 10px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .loading {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body ng-app="myApp" ng-controller="myController">
+
+    <h1>AngularJS REST API - Users List</h1>
+
+    <button ng-click="fetchUsers()">Fetch Users</button>
+    <br>
+    <input type="text" ng-model="searchText" placeholder="Search users...">
+    
+    <p class="loading" ng-show="loading">Loading users...</p>
+
+    <table ng-show="users.length > 0">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Email</th>
+        </tr>
+        <tr ng-repeat="user in users | filter:searchText">
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+        </tr>
+    </table>
+
+    <p ng-show="users.length === 0 && !loading">No users found.</p>
+
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.controller("myController", function ($scope, $http) {
+            $scope.users = [];
+            $scope.loading = false;
+
+            $scope.fetchUsers = function () {
+                $scope.loading = true;
+                $scope.users = []; // Clear previous data
+                
+                $http.get("data.json")
+                    .then(function (response) {
+                        $scope.users = response.data;
+                    })
+                    .catch(function (error) {
+                        console.error("Error fetching data:", error);
+                    })
+                    .finally(function () {
+                        $scope.loading = false;
+                    });
+            };
+        });
+    </script>
+
+</body>
+</html>

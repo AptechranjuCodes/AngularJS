@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+</head>
+<body ng-controller="   ">
+{{message}}
+   <script>
+var myApp = angular.module("myModule", []); 
+
+var myController = function ($scope) 
+{
+ $scope.message = "AngularJS Tutorial";
+ } 
+// Register the controller with the module 
+myApp.controller("myController", myController);
+
+ var myApp = angular.module("myModule", []); 
+line. myApp.controller("myController", function ($scope)
+ { 
+$scope.message = "AngularJS Tutorial"; }
+);
+
+   </script>
+</body>
+</html>

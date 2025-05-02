@@ -1,0 +1,62 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+</head>
+<body ng-app="myApp">
+
+    <p><a href="#">India Tourism</a></p>
+    <a href="#/agra">Taj Mahal</a>
+    <a href="#/kashmir">Kashmir</a>
+    <a href="#/goa">Goa</a>
+
+    <p>Click on the links to read about these places.</p>
+    <div ng-view style="background-color: lightblue; padding: 20px;"></div>
+
+    <script>
+        var app = angular.module("myApp", ["ngRoute"]);
+
+        app.config(function($routeProvider) {
+            $routeProvider
+                .when("/", {
+                    templateUrl: "indiaTourism.html"
+                })
+                .when("/agra", {
+                    templateUrl: "agra.html"
+                })
+                .when("/kashmir", {
+                    templateUrl: "kashmir.html"
+                })
+                .when("/goa", {
+                    templateUrl: "goa.html"
+                });
+        });
+    </script>
+</body>
+</html>
+
+<!-- indiaTourism.html -->
+<div>
+    <h2>Welcome to India Tourism</h2>
+    <p>Explore the rich cultural heritage of India.</p>
+</div>
+
+<!-- agra.html -->
+<div>
+    <h2>Agra</h2>
+    <p>Home to the magnificent Taj Mahal.</p>
+</div>
+
+<!-- kashmir.html -->
+<div>
+    <h2>Kashmir</h2>
+    <p>Experience the paradise on Earth.</p>
+</div>
+
+<!-- goa.html -->
+<div>
+    <h2>Goa</h2>
+    <p>Enjoy the beautiful beaches and vibrant nightlife.</p>
+</div>
